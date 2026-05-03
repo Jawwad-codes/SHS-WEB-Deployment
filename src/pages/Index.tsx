@@ -101,11 +101,11 @@ const Home = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7, duration: 1 }}
-            className="mt-12 flex items-center gap-6 text-xs text-white/70"
+            className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-xs text-white/70"
           >
             <div className="flex items-center gap-1.5"><ShieldCheck className="h-4 w-4 text-accent-glow" /> Licensed & insured</div>
-            <div className="flex items-center gap-1.5"><Star className="h-4 w-4 fill-accent-glow text-accent-glow" /> 4.9 rating · 1,800+ reviews</div>
-            <div className="hidden items-center gap-1.5 sm:flex"><Sparkles className="h-4 w-4 text-accent-glow" /> 10-year workmanship warranty</div>
+            <div className="flex items-center gap-1.5"><Star className="h-4 w-4 fill-accent-glow text-accent-glow" /> 4.9 · 1,800+ reviews</div>
+            <div className="flex items-center gap-1.5"><Sparkles className="h-4 w-4 text-accent-glow" /> 10-year warranty</div>
           </motion.div>
         </motion.div>
 
