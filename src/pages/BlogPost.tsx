@@ -28,12 +28,21 @@ const BlogPost = () => {
         <p className="mt-5 text-lg text-muted-foreground">{post.excerpt}</p>
         <img src={hero} alt={post.title} className="mt-10 aspect-[16/9] w-full rounded-3xl object-cover shadow-elegant" loading="lazy" />
 
-        <div className="prose prose-lg mt-12 max-w-none text-foreground">
-          <p>If you've ever wondered why home maintenance feels like a moving target, you're not alone. Most homeowners we meet have the same handful of questions — usually about timing, cost, and what they can safely do themselves.</p>
+        <div className="prose prose-lg mt-12 max-w-none text-foreground dark:prose-invert">
+          <p>If you've ever wondered why home maintenance feels like a moving target, you're not alone. Most homeowners we meet have the same handful of questions — usually about timing, cost, and what they can safely do themselves. The honest answer is that a well-maintained home is the result of a hundred small, boring decisions made consistently over years. The good news? Almost none of them are urgent if you stay ahead of them.</p>
+
           <h2 className="font-display text-2xl font-medium">The basics, briefly</h2>
-          <p>Whether you're handling a small repair or planning a season-long project, the principle is the same: catch issues early, document everything, and pick partners who'd want their own house treated the way they treat yours.</p>
+          <p>Whether you're handling a small repair or planning a season-long project, the principle is the same: catch issues early, document everything, and pick partners who'd want their own house treated the way they treat yours. Take photos before and after every project — even small ones. Keep receipts and warranty cards in one folder. And when something feels "off" (a new noise, a different feel underfoot, a draft that wasn't there last winter), trust your gut and investigate before it becomes a real problem.</p>
+
+          <h2 className="font-display text-2xl font-medium">A simple seasonal cadence</h2>
+          <p>Twice a year — once in spring, once in fall — walk the perimeter of your home with a phone and a notepad. Look at the roof line for missing shingles, check downspouts and grading away from the foundation, test garage door reversal sensors, and run every exterior faucet for two minutes. Inside, replace HVAC filters, vacuum refrigerator coils, and test smoke detectors. The whole loop takes 30 minutes and prevents most "surprise" repair calls.</p>
+
           <h2 className="font-display text-2xl font-medium">When to call a pro</h2>
-          <p>Anything involving structural risk, electrical, gas, or work above ground level deserves a licensed technician. The cost of a service call is almost always less than the cost of a redo.</p>
+          <p>Anything involving structural risk, electrical, gas, or work above ground level deserves a licensed technician. The cost of a service call is almost always less than the cost of a redo — and dramatically less than the cost of an injury or insurance dispute. Other clear "call a pro" signals: anything under warranty, anything you'd be embarrassed to leave for the next homeowner, and anything that requires a permit.</p>
+
+          <h2 className="font-display text-2xl font-medium">Texas-specific notes</h2>
+          <p>Our climate is hard on homes. Hail, hurricane-force winds along the coast, expansive clay soils across DFW, and triple-digit summers everywhere. The single highest-ROI maintenance move for most Texas homeowners is annual roof and gutter inspection in early spring, before storm season. Second-highest: a fresh coat of UV-grade exterior caulk every three years.</p>
+
           <p>Got a question we didn't cover? Give us a call — we love nerding out about this stuff.</p>
         </div>
 

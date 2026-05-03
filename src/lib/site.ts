@@ -120,34 +120,15 @@ export const STATS = [
 ];
 
 export const TESTIMONIALS = [
-  {
-    name: "Marisol Vega",
-    city: "Austin, TX",
-    quote:
-      "Replaced my garage door springs the same day I called. Professional, friendly, and the price was exactly what they quoted.",
-    rating: 5,
-  },
-  {
-    name: "James O'Connor",
-    city: "Round Rock, TX",
-    quote:
-      "Hired Summit for a full handyman day — drywall, paint, and a new smart lock. Everything was flawless. Already booked them for the roof.",
-    rating: 5,
-  },
-  {
-    name: "Priya Shah",
-    city: "Cedar Park, TX",
-    quote:
-      "Their maintenance plan is the best money we spend on the house. Two visits a year and zero surprises. Highly recommend.",
-    rating: 5,
-  },
-  {
-    name: "Daniel Reyes",
-    city: "San Marcos, TX",
-    quote:
-      "After the storm I had three estimates. Summit was the most thorough and the only ones who showed up exactly on time.",
-    rating: 5,
-  },
+  { name: "Marisol Vega", city: "Austin, TX", quote: "Replaced my garage door springs the same day I called. Professional, friendly, and the price was exactly what they quoted.", rating: 5 },
+  { name: "James O'Connor", city: "Round Rock, TX", quote: "Hired Summit for a full handyman day — drywall, paint, and a new smart lock. Everything was flawless. Already booked them for the roof.", rating: 5 },
+  { name: "Priya Shah", city: "Cedar Park, TX", quote: "Their maintenance plan is the best money we spend on the house. Two visits a year and zero surprises. Highly recommend.", rating: 5 },
+  { name: "Daniel Reyes", city: "San Marcos, TX", quote: "After the storm I had three estimates. Summit was the most thorough and the only ones who showed up exactly on time.", rating: 5 },
+  { name: "Allison Kim", city: "Plano, TX", quote: "From quote to install our new entry door took 48 hours. The crew was respectful, clean, and incredibly skilled.", rating: 5 },
+  { name: "Marcus Bell", city: "Houston, TX", quote: "Our automatic gate hadn't worked in months. Summit diagnosed it in 20 minutes and had us rolling the same afternoon.", rating: 5 },
+  { name: "Rebecca Nguyen", city: "San Antonio, TX", quote: "Beautiful workmanship on our cedar fence. Neighbors keep stopping to ask who built it. Worth every dollar.", rating: 5 },
+  { name: "Tyler Brooks", city: "Fort Worth, TX", quote: "Smart home install was seamless — cameras, locks, lights, all on one app. Tech walked me through every feature.", rating: 5 },
+  { name: "Sofia Hernandez", city: "Dallas, TX", quote: "Storm took half my shingles. Summit handled the insurance paperwork AND the roof. Couldn't ask for more.", rating: 5 },
 ];
 
 export const BENEFITS = [
@@ -202,9 +183,55 @@ export const PLANS = [
 ];
 
 export const LOCATIONS = [
-  "Austin", "Round Rock", "Cedar Park", "Pflugerville", "Leander", "Georgetown",
-  "San Marcos", "Kyle", "Buda", "Lakeway", "Bee Cave", "Dripping Springs",
-  "San Antonio", "New Braunfels", "Houston (select)", "Dallas (select)",
+  "Austin", "Dallas", "Fort Worth", "Houston", "San Antonio",
+  "Round Rock", "Cedar Park", "Pflugerville", "Leander", "Georgetown",
+  "Plano", "Frisco", "Arlington", "Irving", "McKinney",
+  "Sugar Land", "The Woodlands", "Katy", "Pearland",
+  "New Braunfels", "San Marcos", "Kyle", "Buda",
+  "Lakeway", "Bee Cave", "Dripping Springs",
+];
+
+export const CITIES = [
+  {
+    slug: "austin",
+    name: "Austin",
+    region: "Central Texas",
+    blurb: "From Mueller bungalows to Westlake estates — Summit has serviced 4,200+ Austin homes since 2008. Same-day dispatch inside Loop 1.",
+    neighborhoods: ["Mueller", "Westlake", "South Congress", "Hyde Park", "Tarrytown", "East Austin"],
+    response: "Same-day",
+  },
+  {
+    slug: "dallas",
+    name: "Dallas",
+    region: "DFW Metroplex",
+    blurb: "Serving Highland Park, Lakewood, and the broader Dallas County. Specialists in storm-season roof and gate repair.",
+    neighborhoods: ["Highland Park", "Lakewood", "Oak Cliff", "Uptown", "Preston Hollow", "Lake Highlands"],
+    response: "Within 24h",
+  },
+  {
+    slug: "fort-worth",
+    name: "Fort Worth",
+    region: "DFW Metroplex",
+    blurb: "Cowtown craftsmanship — historic-home repairs, modern smart-home retrofits, and everything in between.",
+    neighborhoods: ["TCU", "Westover Hills", "Fairmount", "Sundance Square", "Arlington Heights"],
+    response: "Within 24h",
+  },
+  {
+    slug: "houston",
+    name: "Houston",
+    region: "Gulf Coast",
+    blurb: "Hurricane-rated installs across The Heights, Memorial, and Sugar Land. Backed by our 10-year warranty.",
+    neighborhoods: ["The Heights", "Memorial", "Bellaire", "Montrose", "River Oaks", "Sugar Land"],
+    response: "Within 24h",
+  },
+  {
+    slug: "san-antonio",
+    name: "San Antonio",
+    region: "South Texas",
+    blurb: "From Alamo Heights to Stone Oak — gates, garage doors, and exterior repairs built for Hill Country weather.",
+    neighborhoods: ["Alamo Heights", "Stone Oak", "Olmos Park", "Terrell Hills", "The Dominion"],
+    response: "Same-day",
+  },
 ];
 
 export const POSTS = [

@@ -9,8 +9,12 @@ import { Reveal, SectionEyebrow } from "@/components/primitives";
 import { Counter } from "@/components/Counter";
 import { BeforeAfter } from "@/components/BeforeAfter";
 import { TestimonialCarousel } from "@/components/TestimonialCarousel";
+import { HeroCarousel } from "@/components/HeroCarousel";
 import { BENEFITS, SERVICES, SITE, STATS } from "@/lib/site";
 import hero from "@/assets/hero-home.jpg";
+import hero2 from "@/assets/hero-2.jpg";
+import hero3 from "@/assets/hero-3.jpg";
+import hero4 from "@/assets/hero-4.jpg";
 import team from "@/assets/team.jpg";
 import beforeImg from "@/assets/before-garage.jpg";
 import afterImg from "@/assets/after-garage.jpg";
@@ -43,17 +47,14 @@ const Home = () => {
       />
 
       {/* HERO */}
-      <section ref={heroRef} className="relative -mt-20 h-[100svh] min-h-[680px] overflow-hidden">
-        <motion.img
-          src={hero}
-          alt="Premium Texas home at golden hour"
-          className="absolute inset-0 h-[120%] w-full object-cover"
-          style={{ y: yImg }}
-        />
-        <div className="absolute inset-0 bg-gradient-hero" />
-        <div className="absolute inset-0 grain" />
+      <section ref={heroRef} className="relative -mt-20 min-h-[640px] h-[100svh] overflow-hidden">
+        <motion.div style={{ y: yImg }} className="absolute inset-0 h-[115%]">
+          <HeroCarousel images={[hero, hero2, hero3, hero4]} />
+        </motion.div>
+        <div className="absolute inset-0 bg-gradient-hero z-10" />
+        <div className="absolute inset-0 grain z-10" />
 
-        <motion.div style={{ y: yText }} className="container-px relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-end pb-20 pt-32 text-white">
+        <motion.div style={{ y: yText }} className="container-px relative z-20 mx-auto flex h-full max-w-7xl flex-col justify-end pb-24 pt-28 text-white">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -100,11 +101,11 @@ const Home = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7, duration: 1 }}
-            className="mt-12 flex items-center gap-6 text-xs text-white/70"
+            className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-xs text-white/70"
           >
             <div className="flex items-center gap-1.5"><ShieldCheck className="h-4 w-4 text-accent-glow" /> Licensed & insured</div>
-            <div className="flex items-center gap-1.5"><Star className="h-4 w-4 fill-accent-glow text-accent-glow" /> 4.9 rating · 1,800+ reviews</div>
-            <div className="hidden items-center gap-1.5 sm:flex"><Sparkles className="h-4 w-4 text-accent-glow" /> 10-year workmanship warranty</div>
+            <div className="flex items-center gap-1.5"><Star className="h-4 w-4 fill-accent-glow text-accent-glow" /> 4.9 · 1,800+ reviews</div>
+            <div className="flex items-center gap-1.5"><Sparkles className="h-4 w-4 text-accent-glow" /> 10-year warranty</div>
           </motion.div>
         </motion.div>
 
