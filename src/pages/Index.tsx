@@ -37,7 +37,7 @@ const Home = () => {
   return (
     <>
       <Seo
-        title="Summit Home Services — Expert Care for Every Part of Your Home"
+        title="Summit Home Services — Expert Care By JD for Every Part of Your Home"
         description="Texas full-service home maintenance: garage doors, gates, roofing, handyman, smart home & 24/7 emergency repairs. Free quotes."
         canonical="/"
         jsonLd={{
