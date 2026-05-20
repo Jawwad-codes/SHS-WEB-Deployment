@@ -86,7 +86,7 @@ const Home = () => {
             transition={{ duration: 0.9, delay: 0.1 }}
             className="max-w-4xl font-display text-4xl font-medium leading-[1.05] tracking-tight text-balance sm:text-5xl md:text-6xl lg:text-[5rem] xl:text-[5.5rem]"
           >
-            Expert care for{" "}
+            Expert care for By JD{" "}
             <em className="italic font-light text-accent-glow">every part</em>{" "}
             of your home.
           </motion.h1>
