@@ -1,43 +1,47 @@
-name:  Deploy website
+name: Deploy Website
 
 on:
   push:
-   branches:
-     - main
+    branches:
+      - main
 
 jobs:
   docker:
-    runs-on:  ubuntu-latest
-
+    runs-on: ubuntu-latest
 
     steps:
-      - name:  Checkout Code
-        uses:  actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-      - name:  Login to Docker
-        uses:  docker/login-action@v3
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }} 
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker Image
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/summit-home:latest .
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/summit-home:latest .
 
       - name: Push Docker Image
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/summit-home:latest
+        run: |
+          docker push ${{ secrets.DOCKER_USERNAME }}/summit-home:latest
 
-      - name:  Deploy To aws-EC2
-        uses:  appleboy/ssh-action@v1.0.3
+      - name: Deploy to AWS EC2
+        uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
-          script:  |
-            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/summit-home:latest
+          script: |
             sudo docker stop summit-home || true
             sudo docker rm summit-home || true
+
+            sudo docker rmi ${{ secrets.DOCKER_USERNAME }}/summit-home:latest || true
+
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/summit-home:latest
+
             sudo docker run -d \
               --name summit-home \
               -p 80:80 \
               ${{ secrets.DOCKER_USERNAME }}/summit-home:latest
-
