@@ -15,7 +15,7 @@ const VALUES = [
   {
     icon: Heart,
     title: "Care first",
-    text: "We treat every home like our own grandparent's. That means shoe covers, drop cloths, and a clean workspace — every time.",
+    text: "We treat every home like our own grandparent's or family member. That means shoe covers, drop cloths, and a clean workspace — every time.",
   },
   {
     icon: Wrench,
