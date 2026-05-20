@@ -1,3 +1,5 @@
+/** @format */
+
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, ChevronLeft, ChevronRight, Send } from "lucide-react";
@@ -20,7 +22,12 @@ const schema = z.object({
   notes: z.string().trim().max(800).optional(),
 });
 
-const URGENCY = ["Emergency (24h)", "Within a week", "This month", "Just exploring"];
+const URGENCY = [
+  "Emergency (24h)",
+  "Within a week",
+  "This month",
+  "Just exploring",
+];
 
 export function QuoteForm() {
   const [step, setStep] = useState(0);
@@ -35,16 +42,20 @@ export function QuoteForm() {
     notes: "",
   });
 
-  const setField = <K extends keyof typeof data>(k: K, v: (typeof data)[K]) => setData((d) => ({ ...d, [k]: v }));
+  const setField = <K extends keyof typeof data>(k: K, v: (typeof data)[K]) =>
+    setData((d) => ({ ...d, [k]: v }));
 
   const steps = ["Service", "Schedule", "Contact", "Review"];
 
   const next = () => {
-    if (step === 0 && !data.service) return toast.error("Please pick a service");
-    if (step === 1 && !data.urgency) return toast.error("Please pick a timeframe");
+    if (step === 0 && !data.service)
+      return toast.error("Please pick a service");
+    if (step === 1 && !data.urgency)
+      return toast.error("Please pick a timeframe");
     if (step === 2) {
       const parsed = schema.safeParse(data);
-      if (!parsed.success) return toast.error("Please complete the contact details");
+      if (!parsed.success)
+        return toast.error("Please complete the contact details");
     }
     setStep((s) => Math.min(s + 1, steps.length - 1));
   };
@@ -55,7 +66,16 @@ export function QuoteForm() {
     if (!parsed.success) return toast.error("Please review the form");
     toast.success("Quote requested! We'll call within 1 business hour.");
     setStep(0);
-    setData({ service: "", urgency: "", date: "", name: "", email: "", phone: "", zip: "", notes: "" });
+    setData({
+      service: "",
+      urgency: "",
+      date: "",
+      name: "",
+      email: "",
+      phone: "",
+      zip: "",
+      notes: "",
+    });
   };
 
   return (
@@ -65,13 +85,23 @@ export function QuoteForm() {
           <div key={s} className="flex flex-1 items-center gap-3">
             <div
               className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-semibold transition-all ${
-                i <= step ? "bg-accent text-accent-foreground" : "bg-secondary text-muted-foreground"
+                i <= step
+                  ? "bg-accent text-accent-foreground"
+                  : "bg-secondary text-muted-foreground"
               }`}
             >
               {i < step ? <Check className="h-4 w-4" /> : i + 1}
             </div>
-            <span className={`hidden text-xs font-medium md:inline ${i === step ? "text-foreground" : "text-muted-foreground"}`}>{s}</span>
-            {i < steps.length - 1 && <div className={`h-px flex-1 ${i < step ? "bg-accent" : "bg-border"}`} />}
+            <span
+              className={`hidden text-xs font-medium md:inline ${i === step ? "text-foreground" : "text-muted-foreground"}`}
+            >
+              {s}
+            </span>
+            {i < steps.length - 1 && (
+              <div
+                className={`h-px flex-1 ${i < step ? "bg-accent" : "bg-border"}`}
+              />
+            )}
           </div>
         ))}
       </div>
@@ -86,8 +116,12 @@ export function QuoteForm() {
         >
           {step === 0 && (
             <div>
-              <h3 className="font-display text-2xl font-medium">What can we help with?</h3>
-              <p className="mt-1 text-sm text-muted-foreground">Pick the closest match — we'll dig into details next.</p>
+              <h3 className="font-display text-2xl font-medium">
+                What can we help with?
+              </h3>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Pick the closest match — we'll dig into details next.
+              </p>
               <div className="mt-6 grid gap-3 sm:grid-cols-2">
                 {SERVICES.map((s) => (
                   <button
@@ -95,7 +129,9 @@ export function QuoteForm() {
                     type="button"
                     onClick={() => setField("service", s.title)}
                     className={`group flex items-center gap-3 rounded-2xl border-2 p-4 text-left transition-all ${
-                      data.service === s.title ? "border-accent bg-accent/5" : "border-border/60 hover:border-accent/60"
+                      data.service === s.title
+                        ? "border-accent bg-accent/5 text-foreground"
+                        : "border-border hover:border-accent/60 text-foreground"
                     }`}
                   >
                     <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-accent text-white">
@@ -103,7 +139,9 @@ export function QuoteForm() {
                     </span>
                     <span className="flex flex-col">
                       <span className="text-sm font-semibold">{s.title}</span>
-                      <span className="text-xs text-muted-foreground">{s.short}</span>
+                      <span className="text-xs text-muted-foreground">
+                        {s.short}
+                      </span>
                     </span>
                   </button>
                 ))}
@@ -113,8 +151,12 @@ export function QuoteForm() {
 
           {step === 1 && (
             <div>
-              <h3 className="font-display text-2xl font-medium">When do you need it?</h3>
-              <p className="mt-1 text-sm text-muted-foreground">We'll prioritize your slot accordingly.</p>
+              <h3 className="font-display text-2xl font-medium">
+                When do you need it?
+              </h3>
+              <p className="mt-1 text-sm text-muted-foreground">
+                We'll prioritize your slot accordingly.
+              </p>
               <div className="mt-6 grid gap-3 sm:grid-cols-2">
                 {URGENCY.map((u) => (
                   <button
@@ -122,7 +164,9 @@ export function QuoteForm() {
                     type="button"
                     onClick={() => setField("urgency", u)}
                     className={`rounded-2xl border-2 p-4 text-left text-sm font-medium transition-all ${
-                      data.urgency === u ? "border-accent bg-accent/5 text-foreground" : "border-border/60 hover:border-accent/60 text-muted-foreground"
+                      data.urgency === u
+                        ? "border-accent bg-accent/5 text-foreground"
+                        : "border-border/60 hover:border-accent/60 text-muted-foreground"
                     }`}
                   >
                     {u}
@@ -131,30 +175,59 @@ export function QuoteForm() {
               </div>
               <div className="mt-6">
                 <Label htmlFor="date">Preferred date (optional)</Label>
-                <Input id="date" type="date" value={data.date} onChange={(e) => setField("date", e.target.value)} className="mt-2 rounded-xl" />
+                <Input
+                  id="date"
+                  type="date"
+                  value={data.date}
+                  onChange={(e) => setField("date", e.target.value)}
+                  className="mt-2 rounded-xl"
+                />
               </div>
             </div>
           )}
 
           {step === 2 && (
             <div>
-              <h3 className="font-display text-2xl font-medium">Where should we reach you?</h3>
+              <h3 className="font-display text-2xl font-medium">
+                Where should we reach you?
+              </h3>
               <div className="mt-6 grid gap-4 sm:grid-cols-2">
                 <div>
                   <Label htmlFor="name">Full name</Label>
-                  <Input id="name" value={data.name} onChange={(e) => setField("name", e.target.value)} className="mt-2 rounded-xl" />
+                  <Input
+                    id="name"
+                    value={data.name}
+                    onChange={(e) => setField("name", e.target.value)}
+                    className="mt-2 rounded-xl"
+                  />
                 </div>
                 <div>
                   <Label htmlFor="phone">Phone</Label>
-                  <Input id="phone" value={data.phone} onChange={(e) => setField("phone", e.target.value)} className="mt-2 rounded-xl" />
+                  <Input
+                    id="phone"
+                    value={data.phone}
+                    onChange={(e) => setField("phone", e.target.value)}
+                    className="mt-2 rounded-xl"
+                  />
                 </div>
                 <div>
                   <Label htmlFor="email">Email</Label>
-                  <Input id="email" type="email" value={data.email} onChange={(e) => setField("email", e.target.value)} className="mt-2 rounded-xl" />
+                  <Input
+                    id="email"
+                    type="email"
+                    value={data.email}
+                    onChange={(e) => setField("email", e.target.value)}
+                    className="mt-2 rounded-xl"
+                  />
                 </div>
                 <div>
                   <Label htmlFor="zip">ZIP code</Label>
-                  <Input id="zip" value={data.zip} onChange={(e) => setField("zip", e.target.value)} className="mt-2 rounded-xl" />
+                  <Input
+                    id="zip"
+                    value={data.zip}
+                    onChange={(e) => setField("zip", e.target.value)}
+                    className="mt-2 rounded-xl"
+                  />
                 </div>
                 <div className="sm:col-span-2">
                   <Label htmlFor="notes">Tell us more (optional)</Label>
@@ -174,8 +247,10 @@ export function QuoteForm() {
           {step === 3 && (
             <div>
               <h3 className="font-display text-2xl font-medium">Looks good?</h3>
-              <p className="mt-1 text-sm text-muted-foreground">A real human will call within 1 business hour.</p>
-              <dl className="mt-6 divide-y divide-border/60 rounded-2xl border border-border/60 bg-background/50 p-2 text-sm">
+              <p className="mt-1 text-sm text-muted-foreground">
+                A real human will call within 1 business hour.
+              </p>
+              <dl className="mt-6 divide-y divide-border/60 rounded-2xl border border-border/60 bg-secondary/50 p-2 text-sm">
                 {[
                   ["Service", data.service],
                   ["Timeframe", data.urgency],
@@ -188,7 +263,9 @@ export function QuoteForm() {
                 ].map(([k, v]) => (
                   <div key={k} className="flex justify-between gap-4 px-4 py-3">
                     <dt className="text-muted-foreground">{k}</dt>
-                    <dd className="font-medium text-foreground text-right">{v}</dd>
+                    <dd className="font-medium text-foreground text-right">
+                      {v}
+                    </dd>
                   </div>
                 ))}
               </dl>

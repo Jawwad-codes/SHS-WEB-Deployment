@@ -1,3 +1,5 @@
+/** @format */
+
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
@@ -13,6 +15,13 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const [mega, setMega] = useState(false);
   const location = useLocation();
+
+  // Only use white/transparent style on the home page hero (before scroll)
+  const isHome = location.pathname === "/";
+  const isServiceDetail = location.pathname.startsWith("/services/");
+  // Pages with a dark hero image behind the navbar
+  const hasDarkHero = isHome || isServiceDetail;
+  const useWhiteNav = hasDarkHero && !scrolled;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -30,11 +39,13 @@ export function Navbar() {
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-500",
-        scrolled ? "bg-background/85 backdrop-blur-xl border-b border-border/60 shadow-soft" : "bg-transparent",
+        scrolled
+          ? "bg-background/85 backdrop-blur-xl border-b border-border/60 shadow-soft"
+          : "bg-transparent",
       )}
     >
       <div className="container-px mx-auto flex h-20 max-w-7xl items-center justify-between">
-        <Logo />
+        <Logo invert={useWhiteNav} />
 
         <nav className="hidden items-center gap-1 lg:flex">
           {NAV.map((item) =>
@@ -50,7 +61,11 @@ export function Navbar() {
                   className={({ isActive }) =>
                     cn(
                       "inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium transition-colors",
-                      isActive ? "text-accent" : "text-foreground/80 hover:text-foreground",
+                      isActive
+                        ? "text-accent"
+                        : useWhiteNav
+                          ? "text-white/90 hover:text-white"
+                          : "text-foreground/80 hover:text-foreground",
                     )
                   }
                 >
@@ -78,8 +93,12 @@ export function Navbar() {
                                 <s.icon className="h-5 w-5" />
                               </span>
                               <span className="flex flex-col">
-                                <span className="text-sm font-semibold text-foreground">{s.title}</span>
-                                <span className="text-xs text-muted-foreground">{s.short}</span>
+                                <span className="text-sm font-semibold text-foreground">
+                                  {s.title}
+                                </span>
+                                <span className="text-xs text-muted-foreground">
+                                  {s.short}
+                                </span>
                               </span>
                             </Link>
                           ))}
@@ -104,7 +123,11 @@ export function Navbar() {
                 className={({ isActive }) =>
                   cn(
                     "rounded-full px-4 py-2 text-sm font-medium transition-colors",
-                    isActive ? "text-accent" : "text-foreground/80 hover:text-foreground",
+                    isActive
+                      ? "text-accent"
+                      : useWhiteNav
+                        ? "text-white/90 hover:text-white"
+                        : "text-foreground/80 hover:text-foreground",
                   )
                 }
               >
@@ -117,17 +140,35 @@ export function Navbar() {
         <div className="flex items-center gap-2">
           <a
             href={`tel:${SITE.phoneRaw}`}
-            className="hidden items-center gap-2 text-sm font-medium text-foreground/80 hover:text-foreground md:inline-flex"
+            className={cn(
+              "hidden items-center gap-2 text-sm font-medium transition-colors md:inline-flex",
+              useWhiteNav
+                ? "text-white/90 hover:text-white"
+                : "text-foreground/80 hover:text-foreground",
+            )}
           >
             <Phone className="h-4 w-4 text-accent" />
             {SITE.phone}
           </a>
-          <ThemeToggle className="hidden md:inline-flex" />
-          <Button asChild variant="hero" size="sm" className="hidden sm:inline-flex">
+          <ThemeToggle
+            className="hidden md:inline-flex"
+            transparent={useWhiteNav}
+          />
+          <Button
+            asChild
+            variant="hero"
+            size="sm"
+            className="hidden sm:inline-flex"
+          >
             <Link to="/contact">Free Quote</Link>
           </Button>
           <button
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border/60 lg:hidden"
+            className={cn(
+              "inline-flex h-10 w-10 items-center justify-center rounded-full border transition-colors lg:hidden",
+              useWhiteNav
+                ? "border-white/30 text-white hover:bg-white/10"
+                : "border-border/60 text-foreground hover:bg-secondary",
+            )}
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
           >
@@ -159,16 +200,19 @@ export function Navbar() {
                   <Link
                     key={s.slug}
                     to={`/services/${s.slug}`}
-                    className="flex items-center gap-2 rounded-xl bg-secondary px-3 py-2 text-xs font-medium"
+                    className="flex items-center gap-2 rounded-xl bg-secondary px-3 py-2 text-xs font-medium text-secondary-foreground"
                   >
                     <s.icon className="h-4 w-4 text-accent" />
                     {s.title}
                   </Link>
                 ))}
               </div>
-              <Button asChild variant="hero" className="mt-3">
-                <Link to="/contact">Get Your Free Quote</Link>
-              </Button>
+              <div className="mt-3 flex items-center justify-between gap-3 border-t border-border/60 pt-3">
+                <ThemeToggle />
+                <Button asChild variant="hero" className="flex-1">
+                  <Link to="/contact">Get Your Free Quote</Link>
+                </Button>
+              </div>
             </div>
           </motion.div>
         )}

@@ -1,13 +1,32 @@
+/** @format */
+
 import { ReactNode } from "react";
 import { motion, type Variants } from "framer-motion";
 
-export function Reveal({ children, delay = 0, y = 24 }: { children: ReactNode; delay?: number; y?: number }) {
+export function Reveal({
+  children,
+  delay = 0,
+  y = 24,
+}: {
+  children: ReactNode;
+  delay?: number;
+  y?: number;
+}) {
   const v: Variants = {
     hidden: { opacity: 0, y },
-    show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1], delay } },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1], delay },
+    },
   };
   return (
-    <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} variants={v}>
+    <motion.div
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={v}
+    >
       {children}
     </motion.div>
   );
@@ -35,7 +54,7 @@ export function PageHero({
 }) {
   return (
     <section className="relative overflow-hidden bg-gradient-warm">
-      <div className="container-px mx-auto max-w-7xl py-20 md:py-28">
+      <div className="container-px mx-auto max-w-7xl py-16 md:py-24">
         <div className="max-w-3xl">
           {eyebrow && <SectionEyebrow>{eyebrow}</SectionEyebrow>}
           <motion.h1
@@ -51,15 +70,17 @@ export function PageHero({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="mt-6 max-w-2xl text-lg text-muted-foreground"
+              className="mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg"
             >
               {subtitle}
             </motion.p>
           )}
-          {children && <div className="mt-8 flex flex-wrap gap-3">{children}</div>}
+          {children && (
+            <div className="mt-8 flex flex-wrap gap-3">{children}</div>
+          )}
         </div>
       </div>
-      <div className="pointer-events-none absolute -right-24 -top-20 h-80 w-80 rounded-full bg-accent/15 blur-3xl" />
+      <div className="pointer-events-none absolute -right-24 -top-20 h-80 w-80 rounded-full bg-accent/10 blur-3xl" />
     </section>
   );
 }

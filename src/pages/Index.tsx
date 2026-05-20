@@ -1,3 +1,5 @@
+/** @format */
+
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
@@ -15,7 +17,7 @@ import hero from "@/assets/hero-home.jpg";
 import hero2 from "@/assets/hero-2.jpg";
 import hero3 from "@/assets/hero-3.jpg";
 import hero4 from "@/assets/hero-4.jpg";
-import team from "@/assets/team.jpg";
+import team2 from "@/assets/team2.jpg";
 import beforeImg from "@/assets/before-garage.jpg";
 import afterImg from "@/assets/after-garage.jpg";
 import gFence from "@/assets/gallery-fence.jpg";
@@ -25,7 +27,10 @@ import gWindow from "@/assets/gallery-window.jpg";
 
 const Home = () => {
   const heroRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
   const yImg = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
   const yText = useTransform(scrollYProgress, [0, 1], ["0%", "-12%"]);
 
@@ -40,26 +45,36 @@ const Home = () => {
           "@type": "HomeAndConstructionBusiness",
           name: SITE.name,
           telephone: SITE.phone,
-          address: { "@type": "PostalAddress", streetAddress: SITE.address, addressRegion: "TX" },
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: SITE.address,
+            addressRegion: "TX",
+          },
           areaServed: "Texas",
           priceRange: "$$",
         }}
       />
 
       {/* HERO */}
-      <section ref={heroRef} className="relative -mt-20 min-h-[640px] h-[100svh] overflow-hidden">
+      <section
+        ref={heroRef}
+        className="relative -mt-20 min-h-[640px] h-[100svh] overflow-hidden"
+      >
         <motion.div style={{ y: yImg }} className="absolute inset-0 h-[115%]">
           <HeroCarousel images={[hero, hero2, hero3, hero4]} />
         </motion.div>
         <div className="absolute inset-0 bg-gradient-hero z-10" />
         <div className="absolute inset-0 grain z-10" />
 
-        <motion.div style={{ y: yText }} className="container-px relative z-20 mx-auto flex h-full max-w-7xl flex-col justify-end pb-24 pt-28 text-white">
+        <motion.div
+          style={{ y: yText }}
+          className="container-px relative z-20 mx-auto flex h-full max-w-7xl flex-col mt-9 justify-end pb-24 pt-28 text-white"
+        >
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-medium tracking-wide text-white/90 backdrop-blur"
+            className="mb-2 inline-flex w-fit items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-medium tracking-wide text-white/90 backdrop-blur"
           >
             <span className="flex h-1.5 w-1.5 rounded-full bg-accent" />
             Trusted by 12,000+ Texas homeowners
@@ -69,9 +84,11 @@ const Home = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.1 }}
-            className="max-w-4xl font-display text-5xl font-medium leading-[1.02] tracking-tight text-balance sm:text-6xl md:text-7xl lg:text-[5.5rem]"
+            className="max-w-4xl font-display text-4xl font-medium leading-[1.05] tracking-tight text-balance sm:text-5xl md:text-6xl lg:text-[5rem] xl:text-[5.5rem]"
           >
-            Expert care for <em className="italic font-light text-accent-glow">every part</em> of your home.
+            Expert care for{" "}
+            <em className="italic font-light text-accent-glow">every part</em>{" "}
+            of your home.
           </motion.h1>
 
           <motion.p
@@ -80,7 +97,9 @@ const Home = () => {
             transition={{ duration: 0.9, delay: 0.25 }}
             className="mt-6 max-w-xl text-base text-white/80 sm:text-lg"
           >
-            From garage doors to roofs, smart locks to seasonal tune-ups — one trusted Texas team for the whole house. Licensed, insured, and on-call 24/7.
+            From garage doors to roofs, smart locks to seasonal tune-ups — one
+            trusted Texas team for the whole house. Licensed, insured, and
+            on-call 24/7.
           </motion.p>
 
           <motion.div
@@ -89,11 +108,25 @@ const Home = () => {
             transition={{ duration: 0.9, delay: 0.4 }}
             className="mt-9 flex flex-wrap items-center gap-3"
           >
-            <Button asChild variant="hero" size="lg">
-              <Link to="/contact">Get Your Free Quote <ArrowRight className="h-4 w-4" /></Link>
+            <Button
+              asChild
+              variant="hero"
+              size="lg"
+              className="w-full sm:w-auto"
+            >
+              <Link to="/contact">
+                Get Your Free Quote <ArrowRight className="h-4 w-4" />
+              </Link>
             </Button>
-            <Button asChild variant="glass" size="lg">
-              <a href={`tel:${SITE.phoneRaw}`}><Phone className="h-4 w-4" /> {SITE.phone}</a>
+            <Button
+              asChild
+              variant="glass"
+              size="lg"
+              className="w-full sm:w-auto"
+            >
+              <a href={`tel:${SITE.phoneRaw}`}>
+                <Phone className="h-4 w-4" /> {SITE.phone}
+              </a>
             </Button>
           </motion.div>
 
@@ -103,9 +136,17 @@ const Home = () => {
             transition={{ delay: 0.7, duration: 1 }}
             className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-xs text-white/70"
           >
-            <div className="flex items-center gap-1.5"><ShieldCheck className="h-4 w-4 text-accent-glow" /> Licensed & insured</div>
-            <div className="flex items-center gap-1.5"><Star className="h-4 w-4 fill-accent-glow text-accent-glow" /> 4.9 · 1,800+ reviews</div>
-            <div className="flex items-center gap-1.5"><Sparkles className="h-4 w-4 text-accent-glow" /> 10-year warranty</div>
+            <div className="flex items-center gap-1.5">
+              <ShieldCheck className="h-4 w-4 text-accent-glow" /> Licensed &
+              insured
+            </div>
+            <div className="flex items-center gap-1.5">
+              <Star className="h-4 w-4 fill-accent-glow text-accent-glow" /> 4.9
+              · 1,800+ reviews
+            </div>
+            <div className="flex items-center gap-1.5">
+              <Sparkles className="h-4 w-4 text-accent-glow" /> 10-year warranty
+            </div>
           </motion.div>
         </motion.div>
 
@@ -123,11 +164,20 @@ const Home = () => {
       <section className="border-y border-border/60 bg-card">
         <div className="container-px mx-auto grid max-w-7xl grid-cols-2 divide-y divide-border/60 md:grid-cols-4 md:divide-x md:divide-y-0">
           {STATS.map((s) => (
-            <div key={s.label} className="flex flex-col items-center gap-1 py-8 text-center">
+            <div
+              key={s.label}
+              className="flex flex-col items-center gap-1 py-8 text-center"
+            >
               <span className="font-display text-4xl font-medium text-foreground md:text-5xl">
-                <Counter to={s.value} suffix={s.suffix} decimals={s.decimals ?? 0} />
+                <Counter
+                  to={s.value}
+                  suffix={s.suffix}
+                  decimals={s.decimals ?? 0}
+                />
               </span>
-              <span className="text-xs uppercase tracking-[0.18em] text-muted-foreground">{s.label}</span>
+              <span className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                {s.label}
+              </span>
             </div>
           ))}
         </div>
@@ -139,11 +189,13 @@ const Home = () => {
           <div className="max-w-2xl">
             <SectionEyebrow>Our Services</SectionEyebrow>
             <h2 className="font-display text-4xl font-medium leading-[1.05] sm:text-5xl">
-              One team, <em className="italic font-light text-accent">every trade.</em>
+              One team,{" "}
+              <em className="italic font-light text-accent">every trade.</em>
             </h2>
           </div>
           <p className="max-w-md text-muted-foreground">
-            We started in garage doors and grew into a full-service home maintenance partner. Whatever the house needs — we show up.
+            We started in garage doors and grew into a full-service home
+            maintenance partner. Whatever the house needs — we show up.
           </p>
         </div>
 
@@ -159,13 +211,24 @@ const Home = () => {
         <div className="container-px mx-auto grid max-w-7xl gap-16 py-24 md:py-32 lg:grid-cols-2 lg:items-center">
           <Reveal>
             <div className="relative">
-              <img src={team} alt="The Summit team" className="rounded-3xl shadow-elegant" loading="lazy" />
+              <img
+                src={team2}
+                alt="The Summit team"
+                className="w-full rounded-3xl object-cover shadow-elegant"
+                loading="lazy"
+              />
               <div className="absolute -bottom-8 -right-4 hidden w-64 rounded-2xl border border-border/60 bg-card p-5 shadow-elegant md:block">
                 <div className="flex items-center gap-1 text-accent">
-                  {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} className="h-4 w-4 fill-current" />
+                  ))}
                 </div>
-                <p className="mt-2 text-sm font-medium text-foreground">“Best home-services team in Austin.”</p>
-                <p className="mt-1 text-xs text-muted-foreground">— Houzz Pro Reviews</p>
+                <p className="mt-2 text-sm font-medium text-foreground">
+                  “Best home-services team in Austin.”
+                </p>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  — Houzz Pro Reviews
+                </p>
               </div>
             </div>
           </Reveal>
@@ -183,8 +246,12 @@ const Home = () => {
                       <b.icon className="h-5 w-5 text-accent" />
                     </span>
                     <div>
-                      <h3 className="font-display text-lg font-medium">{b.title}</h3>
-                      <p className="mt-1 text-sm text-muted-foreground">{b.text}</p>
+                      <h3 className="font-display text-lg font-medium">
+                        {b.title}
+                      </h3>
+                      <p className="mt-1 text-sm text-muted-foreground">
+                        {b.text}
+                      </p>
                     </div>
                   </div>
                 </Reveal>
@@ -200,13 +267,17 @@ const Home = () => {
           <div>
             <SectionEyebrow>Real Results</SectionEyebrow>
             <h2 className="font-display text-4xl font-medium leading-tight sm:text-5xl">
-              Drag to see the <em className="italic font-light text-accent">transformation.</em>
+              Drag to see the{" "}
+              <em className="italic font-light text-accent">transformation.</em>
             </h2>
             <p className="mt-5 max-w-md text-muted-foreground">
-              Every project — from a $200 spring repair to a complete door replacement — is documented, photographed, and warrantied.
+              Every project — from a $200 spring repair to a complete door
+              replacement — is documented, photographed, and warrantied.
             </p>
             <Button asChild variant="navy" className="mt-8">
-              <Link to="/gallery">See more projects <ArrowRight className="h-4 w-4" /></Link>
+              <Link to="/gallery">
+                See more projects <ArrowRight className="h-4 w-4" />
+              </Link>
             </Button>
           </div>
           <Reveal>
@@ -218,16 +289,21 @@ const Home = () => {
       {/* FEATURED PROJECTS */}
       <section className="bg-secondary/40">
         <div className="container-px mx-auto max-w-7xl py-24 md:py-32">
-          <div className="mb-12 flex items-end justify-between">
+          <div className="mb-12 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <SectionEyebrow>Featured Projects</SectionEyebrow>
-              <h2 className="font-display text-4xl font-medium leading-tight sm:text-5xl">Recent work, around the corner.</h2>
+              <h2 className="font-display text-4xl font-medium leading-tight sm:text-5xl">
+                Recent work, around the corner.
+              </h2>
             </div>
-            <Link to="/gallery" className="hidden items-center gap-2 text-sm font-semibold text-accent md:inline-flex">
+            <Link
+              to="/gallery"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-accent sm:shrink-0"
+            >
               View gallery <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
             {[
               { src: gFence, t: "Cedar privacy fence" },
               { src: gPaint, t: "Interior repaint" },
@@ -235,10 +311,17 @@ const Home = () => {
               { src: gWindow, t: "Picture window" },
             ].map((p, i) => (
               <Reveal key={p.t} delay={i * 0.06}>
-                <div className="group relative aspect-[4/5] overflow-hidden rounded-3xl">
-                  <img src={p.src} alt={p.t} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <div className="group relative aspect-[3/4] overflow-hidden rounded-2xl sm:rounded-3xl">
+                  <img
+                    src={p.src}
+                    alt={p.t}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent" />
-                  <span className="absolute bottom-5 left-5 right-5 font-display text-lg font-medium text-white">{p.t}</span>
+                  <span className="absolute bottom-3 left-3 right-3 font-display text-sm font-medium text-white sm:bottom-5 sm:left-5 sm:right-5 sm:text-lg">
+                    {p.t}
+                  </span>
                 </div>
               </Reveal>
             ))}
@@ -262,18 +345,36 @@ const Home = () => {
             <div>
               <SectionEyebrow>Ready when you are</SectionEyebrow>
               <h2 className="font-display text-4xl font-medium leading-tight sm:text-5xl">
-                Get a free quote in under <em className="italic font-light text-accent-glow">60 seconds.</em>
+                Get a free quote in under{" "}
+                <em className="italic font-light text-accent-glow">
+                  60 seconds.
+                </em>
               </h2>
               <p className="mt-4 max-w-lg text-primary-foreground/75">
-                No call-center bots. A real Summit team member will reach out within one business hour.
+                No call-center bots. A real Summit team member will reach out
+                within one business hour.
               </p>
             </div>
             <div className="flex flex-col gap-3 md:items-end">
-              <Button asChild variant="hero" size="lg" className="w-full md:w-auto">
-                <Link to="/contact">Start my quote <ArrowRight className="h-4 w-4" /></Link>
+              <Button
+                asChild
+                variant="hero"
+                size="lg"
+                className="w-full md:w-auto"
+              >
+                <Link to="/contact">
+                  Start my quote <ArrowRight className="h-4 w-4" />
+                </Link>
               </Button>
-              <Button asChild variant="glass" size="lg" className="w-full md:w-auto">
-                <a href={`tel:${SITE.phoneRaw}`}><Phone className="h-4 w-4" /> Call {SITE.phone}</a>
+              <Button
+                asChild
+                variant="glass"
+                size="lg"
+                className="w-full md:w-auto"
+              >
+                <a href={`tel:${SITE.phoneRaw}`}>
+                  <Phone className="h-4 w-4" /> Call {SITE.phone}
+                </a>
               </Button>
             </div>
           </div>
