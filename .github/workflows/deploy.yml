@@ -25,3 +25,19 @@ jobs:
 
       - name: Push Docker Image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/summit-home:latest
+
+      - name:  Deploy To aws-EC2
+        uses:  appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script:  |
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/summit-home:latest
+            sudo docker stop summit-home || true
+            sudo docker rm summit-home || true
+            sudo docker run -d \
+              --name summit-home \
+              -p 80:80 \
+              ${{ secrets.DOCKER_USERNAME }}/summit-home:latest
+
