@@ -26,6 +26,7 @@ jobs:
           args: >
             -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
             -Dsonar.sources=.
+            -Dsonar.organization=jawwad-nadeem
 
       - name: Run Test
         run: |
