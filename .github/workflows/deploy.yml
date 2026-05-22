@@ -17,9 +17,9 @@ jobs:
         uses: SonarSource/sonarqube-scan-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          hostUrl: ${{ secrets.SONAR_HOST_URL }}
         with:
          projectKey: ${{ secrets.SONAR_PROJECT_KEY }}
-         hostUrl: ${{ secrets.SONAR_HOST_URL }}
 
       - name: Run Test
         run: |
