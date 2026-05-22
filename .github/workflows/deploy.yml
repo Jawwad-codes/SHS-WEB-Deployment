@@ -13,8 +13,12 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      - name: Debug Sonar Env
+        run: |
+          echo $SONAR_HOST_URL
+
       - name: SonarQUbe Scan Code
-        uses: SonarSource/sonarqube-scan-action@master
+        uses: SonarSource/sonarcloud-github-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           hostUrl: ${{ secrets.SONAR_HOST_URL }}
