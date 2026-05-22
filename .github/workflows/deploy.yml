@@ -18,16 +18,19 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
-         projectkey: ${{ secrets.SONAR_PROJECT_KEY }}
+         projectKey: ${{ secrets.SONAR_PROJECT_KEY }}
          hostUrl: ${{ secrets.SONAR_HOST_URL }}
 
       - name: Run Test
         run: |
           echo "No test written in source code yet but i will do it  Later"
   build:
-    need: scan-and-Test
+    needs: scan-and-test
     runs-on: ubuntu-latest
     steps:
+
+      - name: Checkout Code       
+        uses: actions/checkout@v4
 
       - name: Build Docker Image
         run: |
@@ -51,8 +54,9 @@ jobs:
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/summit-home:latest
   deploy:
-    need: build
+    needs: build
     runs-on: ubuntu-latest
+
     steps:
       - name: Deploy To AWS EC2
         uses: appleboy/ssh-action@v1.0.3
