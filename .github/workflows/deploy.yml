@@ -19,7 +19,9 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           hostUrl: ${{ secrets.SONAR_HOST_URL }}
         with:
-         projectKey: ${{ secrets.SONAR_PROJECT_KEY }}
+          args: >
+            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+            -Dsonar.sources=.
 
       - name: Run Test
         run: |
